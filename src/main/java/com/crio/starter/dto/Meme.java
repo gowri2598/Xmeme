@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Meme {
-    @JsonIgnore//id is not passed in the request body because we would be auto-generating that in the backend
+    //@JsonIgnore//id is not passed in the request body because we would be auto-generating that in the backend
     private String id;
 
     @NotBlank 

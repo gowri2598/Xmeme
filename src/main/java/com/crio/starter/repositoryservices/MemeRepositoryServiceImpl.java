@@ -29,8 +29,9 @@ public class MemeRepositoryServiceImpl implements MemeRepositoryService{
     @Override
     public List<Meme> findHundredLatestMemes() {
         // TODO Auto-generated method stub
+        
+        List<MemeEntity> memesEntities=(List<MemeEntity>) memeRepository.findAll();
 
-        List<MemeEntity> memesEntities=memeRepository.findAll();   
         // List<MemeEntity> memesEntities=memeRepository.findAllMemes();   
         //log.fatal("================ MEME SIZE=========="+memesEntities.size());                                       
         return modelMapperProvider.get().map(memesEntities, new TypeToken<List<Meme>>() {}.getType());
