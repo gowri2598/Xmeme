@@ -1,10 +1,20 @@
 [
-  {
-    "extId": "001",
-    "message": "Hello world"
+  {	  
+"memeId": "1",  
+"name": "gokarna",
+"url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsktuYsXD8rb4XfCTWrIgbgAEuiKAHHMQSxw&usqp=CAU",
+"caption": "Meme for my place"
   },
-  {
-    "extId": "002",
-    "message": "This is second message"
+  {  
+"memeId": "2",    
+"name": "om",
+"url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsktuYsXD8rb4XfCTWrIgbgAEuiKAHHMQSxw&usqp=CAU",
+"caption": "Meme for my place"
+  },
+  {  
+"memeId": "3",        
+"name": "paradise",
+"url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsktuYsXD8rb4XfCTWrIgbgAEuiKAHHMQSxw&usqp=CAU",
+"caption": "Meme for my place"
   }
 ]

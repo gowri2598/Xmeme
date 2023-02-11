@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode
 @NoArgsConstructor
-public class ResponseDto {
+public class MemesDto {
 
-  private String message;
+  private String id;
 
 }

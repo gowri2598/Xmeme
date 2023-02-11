@@ -5,7 +5,7 @@ import com.crio.starter.repository.GreetingsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 @RequiredArgsConstructor
 public class GreetingsService {
 
