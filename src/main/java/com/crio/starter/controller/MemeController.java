@@ -1,6 +1,7 @@
 package com.crio.starter.controller;
 
 import lombok.extern.log4j.Log4j2;
+import javax.validation.Valid;
 import com.crio.starter.exchange.GetMemesResponse;
 import com.crio.starter.exchange.MemesDto;
 import com.crio.starter.models.MemeEntity;
@@ -55,7 +56,7 @@ public class MemeController {
  
     @PostMapping("/memes")
     
-    public MemesDto postMeme(@RequestBody MemeEntity memeEntity){
+    public MemesDto postMeme(@Valid @RequestBody MemeEntity memeEntity){
       log.info("postMemes called with {}", memeEntity);
       
       return memeService.postMeme(memeEntity);
