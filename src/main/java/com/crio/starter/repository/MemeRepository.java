@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemeRepository extends PagingAndSortingRepository<MemeEntity,String> {
 
-    List<MemeEntity> findTop100ByOrderByIdAsc();
+    List<MemeEntity> findLast100ByOrderByIdAsc();
 
     Optional<MemeEntity> findMemesById(String memeId);//since we giving different id name
 

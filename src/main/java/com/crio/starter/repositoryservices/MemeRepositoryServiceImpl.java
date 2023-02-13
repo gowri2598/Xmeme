@@ -31,7 +31,7 @@ public class MemeRepositoryServiceImpl implements MemeRepositoryService{
     @Override
     public List<Meme> findHundredLatestMemes() {
         // TODO Auto-generated method stub
-        List<MemeEntity> memesEntities=(List<MemeEntity>) memeRepository.findTop100ByOrderByIdAsc();
+        List<MemeEntity> memesEntities=(List<MemeEntity>) memeRepository.findLast100ByOrderByIdAsc();
         
 
         // List<MemeEntity> memesEntities=memeRepository.findAllMemes();   
