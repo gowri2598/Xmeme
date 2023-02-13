@@ -14,7 +14,6 @@ import javax.inject.Provider;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,7 +30,7 @@ public class MemeRepositoryServiceImpl implements MemeRepositoryService{
     @Override
     public List<Meme> findHundredLatestMemes() {
         // TODO Auto-generated method stub
-        List<MemeEntity> memesEntities=(List<MemeEntity>) memeRepository.findLast100ByOrderByIdAsc();
+        List<MemeEntity> memesEntities=(List<MemeEntity>) memeRepository.findBottom100ByOrderByIdAsc();
         
 
         // List<MemeEntity> memesEntities=memeRepository.findAllMemes();   
