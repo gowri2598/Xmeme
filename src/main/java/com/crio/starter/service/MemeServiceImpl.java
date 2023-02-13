@@ -17,21 +17,23 @@ public class MemeServiceImpl implements MemeService{
     private MemeRepositoryService memeRepositoryService;
     
     @Override
-    public GetMemesResponse getHundredLatestMemes() {
+    //public GetMemesResponse getHundredLatestMemes() {
+    public List<Meme> getHundredLatestMemes() {
         // TODO Auto-generated method stub
         
         List<Meme> hundredLatestMemes = memeRepositoryService.findHundredLatestMemes();
-
-        return new GetMemesResponse(hundredLatestMemes);
+        return hundredLatestMemes;
+        //return new GetMemesResponse(hundredLatestMemes);
     }
 
     @Override
-    public GetMemesResponse getMemesUsingId(String id) {
+    public List<Meme> getMemesUsingId(String id) {
         // TODO Auto-generated method stub
         Meme selectedMeme = memeRepositoryService.findMemesById(id);
         List<Meme> responseList = new ArrayList<>();
         responseList.add(selectedMeme);
-        return new GetMemesResponse(responseList);
+        return responseList;
+        //return new GetMemesResponse(responseList);
     }
 
     @Override

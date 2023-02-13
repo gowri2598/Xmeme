@@ -1,7 +1,9 @@
 package com.crio.starter.controller;
 
 import lombok.extern.log4j.Log4j2;
+import java.util.List;
 import javax.validation.Valid;
+import com.crio.starter.dto.Meme;
 import com.crio.starter.exchange.GetMemesResponse;
 import com.crio.starter.exchange.MemesDto;
 import com.crio.starter.models.MemeEntity;
@@ -25,10 +27,10 @@ public class MemeController {
     private MemeService memeService;
 
     @GetMapping(MEME_API_ENDPOINT)
-    public ResponseEntity<GetMemesResponse> getLatestMemes() {
+    public ResponseEntity<List<Meme>> getLatestMemes() {
           
         log.info("getLatestMemes called");
-        GetMemesResponse getMemesResponse;
+        List<Meme> getMemesResponse;
   
         //CHECKSTYLE:OFF
         getMemesResponse = memeService.getHundredLatestMemes();
@@ -40,11 +42,11 @@ public class MemeController {
 
     @GetMapping("/memes/{id}")
     //@ResponseBody
-    public ResponseEntity<GetMemesResponse> getMeme(@PathVariable
+    public ResponseEntity<List<Meme>> getMeme(@PathVariable
          String id) {
           System.out.print("in get");
         log.info("getMemes called with {}", id);                                                                                                              
-        GetMemesResponse getMemesResponse;
+        List<Meme> getMemesResponse;
   
         //CHECKSTYLE:OFF
         getMemesResponse = memeService.getMemesUsingId(id);
@@ -58,7 +60,6 @@ public class MemeController {
     
     public MemesDto postMeme(@Valid @RequestBody MemeEntity memeEntity){
       log.info("postMemes called with {}", memeEntity);
-      
       return memeService.postMeme(memeEntity);
     }
   }
