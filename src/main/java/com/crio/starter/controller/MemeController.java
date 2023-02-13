@@ -4,7 +4,6 @@ import lombok.extern.log4j.Log4j2;
 import java.util.List;
 import javax.validation.Valid;
 import com.crio.starter.dto.Meme;
-import com.crio.starter.exchange.GetMemesResponse;
 import com.crio.starter.exchange.MemesDto;
 import com.crio.starter.models.MemeEntity;
 import com.crio.starter.service.MemeService;
@@ -45,15 +44,15 @@ public class MemeController {
          String id) {
           System.out.print("in get");
         log.info("getMemes called with {}", id);                                                                                                              
-        Meme getMemesResponse;
+        Meme meme;
   
         //CHECKSTYLE:OFF
-        getMemesResponse = memeService.getMemesUsingId(id);
-        log.info("getMemes returned {}", getMemesResponse);
+        meme = memeService.getMemesUsingId(id);
+        log.info("getMemes returned {}", meme);
         //CHECKSTYLE:ON
-        System.out.print("The response  is "+getMemesResponse);
+        System.out.print("The response  is "+meme);
         
-      return ResponseEntity.ok().body(getMemesResponse);
+      return ResponseEntity.ok().body(meme);
     }
  
     @PostMapping("/memes")
