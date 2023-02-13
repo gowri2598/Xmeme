@@ -42,13 +42,14 @@ public class MemeRepositoryServiceImpl implements MemeRepositoryService{
     public Meme findMemesById(String id) {
         // TODO Auto-generated method stub
         //camel case {entity-name}{id-name}
-        MemeEntity memesEntities=memeRepository.findMemesById(id).orElseThrow(() -> new IdNotFoundException("id not found"));
+        MemeEntity memesEntities=memeRepository.findMemesById(id).orElse(null);//.orElseThrow(() -> new IdNotFoundException("id not found"));
         //{"memes":[{"memeId":null,"name":null,"url":null,"caption":null}]}-if exception not handled
-        /* 
+        
         if(memesEntities==null){
              throw new IdNotFoundException("id not found");
-        }     
-              */ 
+        }
+        
+        
         return modelMapperProvider.get().map(memesEntities,Meme.class);
     }
 
