@@ -27,13 +27,10 @@ public class MemeServiceImpl implements MemeService{
     }
 
     @Override
-    public List<Meme> getMemesUsingId(String id) {
+    public Meme getMemesUsingId(String id) {
         // TODO Auto-generated method stub
         Meme selectedMeme = memeRepositoryService.findMemesById(id);
-        List<Meme> responseList = new ArrayList<>();
-        responseList.add(selectedMeme);
-        return responseList;
-        //return new GetMemesResponse(responseList);
+        return selectedMeme;
     }
 
     @Override

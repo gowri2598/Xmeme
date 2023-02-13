@@ -8,6 +8,6 @@ import com.crio.starter.models.MemeEntity;
 
 public interface MemeService {
     List<Meme> getHundredLatestMemes();
-    List<Meme> getMemesUsingId(String id);
+    Meme getMemesUsingId(String id);
     MemesDto postMeme(MemeEntity memeEntity);
 }

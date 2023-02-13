@@ -2,6 +2,7 @@ package com.crio.starter.repositoryservices;
 
 import lombok.extern.log4j.Log4j2;
 import java.util.List;
+import java.util.Optional;
 import com.crio.starter.dto.Meme;
 import com.crio.starter.exception.DuplicatePostException;
 import com.crio.starter.exception.IdNotFoundException;
@@ -41,10 +42,9 @@ public class MemeRepositoryServiceImpl implements MemeRepositoryService{
     public Meme findMemesById(String id) {
         // TODO Auto-generated method stub
         //camel case {entity-name}{id-name}
-        MemeEntity memesEntities=memeRepository.findMemesById(id).orElse(new MemeEntity());
+        MemeEntity memesEntities=memeRepository.findMemesById(id).orElseThrow();
         //{"memes":[{"memeId":null,"name":null,"url":null,"caption":null}]}-if exception not handled
-        if(memesEntities.equals(new MemeEntity())){
-            //log.fatal("================ id not found==========");
+        if(memesEntities==null){
              throw new IdNotFoundException("id not found");
         }     
                

@@ -41,18 +41,18 @@ public class MemeController {
     }
 
     @GetMapping("/memes/{id}")
-    //@ResponseBody
-    public ResponseEntity<List<Meme>> getMeme(@PathVariable
+    public ResponseEntity<Meme> getMeme(@PathVariable
          String id) {
           System.out.print("in get");
         log.info("getMemes called with {}", id);                                                                                                              
-        List<Meme> getMemesResponse;
+        Meme getMemesResponse;
   
         //CHECKSTYLE:OFF
         getMemesResponse = memeService.getMemesUsingId(id);
         log.info("getMemes returned {}", getMemesResponse);
         //CHECKSTYLE:ON
         System.out.print("The response  is "+getMemesResponse);
+        
       return ResponseEntity.ok().body(getMemesResponse);
     }
  
