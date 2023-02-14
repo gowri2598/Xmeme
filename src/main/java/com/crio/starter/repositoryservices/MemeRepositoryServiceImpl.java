@@ -1,6 +1,7 @@
 package com.crio.starter.repositoryservices;
 
 import lombok.extern.log4j.Log4j2;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import com.crio.starter.dto.Meme;
@@ -30,7 +31,8 @@ public class MemeRepositoryServiceImpl implements MemeRepositoryService{
     @Override
     public List<Meme> findHundredLatestMemes() {
         // TODO Auto-generated method stub
-        List<MemeEntity> memesEntities=(List<MemeEntity>) memeRepository.findBottom100ByOrderByIdAsc();
+        List<MemeEntity> memesEntities=(List<MemeEntity>) memeRepository.findTop100ByOrderByIdDesc();
+        Collections.reverse(memesEntities);
         
 
         // List<MemeEntity> memesEntities=memeRepository.findAllMemes();   
