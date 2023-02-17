@@ -19,6 +19,8 @@ public class MemeEntity {
     public static final String SEQUENCE_NAME = "users_sequence";
 
     @Id
+    private String _id;//mongo default id
+    @NotNull
     private String id;
     @NotNull
     private String name;

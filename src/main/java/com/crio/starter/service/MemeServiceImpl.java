@@ -3,7 +3,7 @@ package com.crio.starter.service;
 import java.util.List;
 import com.crio.starter.dto.Meme;
 import com.crio.starter.exchange.MemesDto;
-import com.crio.starter.models.MemeEntity;
+import com.crio.starter.exchange.PostMemeRequestDto;
 import com.crio.starter.repositoryservices.MemeRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,9 +32,9 @@ public class MemeServiceImpl implements MemeService{
     }
 
     @Override
-    public MemesDto postMeme(MemeEntity memeEntity) {
+    public MemesDto postMeme(PostMemeRequestDto postEntity) {
         // TODO Auto-generated method stub
-        String id= memeRepositoryService.storeMeme(memeEntity);
+        String id= memeRepositoryService.storeMeme(postEntity);
         return new MemesDto(id);
         
     }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 import com.crio.starter.dto.Meme;
 import com.crio.starter.exchange.MemesDto;
+import com.crio.starter.exchange.PostMemeRequestDto;
 import com.crio.starter.models.MemeEntity;
 import com.crio.starter.service.MemeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +58,8 @@ public class MemeController {
  
     @PostMapping("/memes")
     
-    public MemesDto postMeme(@Valid @RequestBody MemeEntity memeEntity){
-      log.info("postMemes called with {}", memeEntity);
-      return memeService.postMeme(memeEntity);
+    public MemesDto postMeme(@Valid @RequestBody PostMemeRequestDto postEntity){
+      log.info("postMemes called with {}", postEntity);
+      return memeService.postMeme(postEntity);
     }
   }

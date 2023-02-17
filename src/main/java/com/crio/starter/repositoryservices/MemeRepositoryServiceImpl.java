@@ -1,12 +1,14 @@
 package com.crio.starter.repositoryservices;
 
 import lombok.extern.log4j.Log4j2;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import com.crio.starter.dto.Meme;
 import com.crio.starter.exception.DuplicatePostException;
 import com.crio.starter.exception.IdNotFoundException;
+import com.crio.starter.exchange.PostMemeRequestDto;
 import com.crio.starter.models.MemeEntity;
 import com.crio.starter.repository.MemeRepository;
 import com.crio.starter.service.SequenceGeneratorService;
@@ -15,6 +17,9 @@ import javax.inject.Provider;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,10 +36,9 @@ public class MemeRepositoryServiceImpl implements MemeRepositoryService{
     @Override
     public List<Meme> findHundredLatestMemes() {
         // TODO Auto-generated method stub
-        List<MemeEntity> memesEntities=(List<MemeEntity>) memeRepository.findTop100ByOrderByIdDesc();
-        Collections.reverse(memesEntities);
-        
-
+        Pageable pageable = PageRequest.of(0, 100, Sort.by("_id").descending());
+        List<MemeEntity> memesEntities= memeRepository.findLatest100Memes(pageable).orElse(new ArrayList<MemeEntity>());
+         
         // List<MemeEntity> memesEntities=memeRepository.findAllMemes();   
         //log.fatal("================ MEME SIZE=========="+memesEntities.size());                                       
         return modelMapperProvider.get().map(memesEntities, new TypeToken<List<Meme>>() {}.getType());
@@ -55,19 +59,19 @@ public class MemeRepositoryServiceImpl implements MemeRepositoryService{
     }
 
     @Override
-    public String storeMeme(MemeEntity memeEntity){
+    public String storeMeme(PostMemeRequestDto postEntity){
         // TODO Auto-generated method stub
     
     
-        boolean isExists = memeRepository.existsByNameIgnoreCaseAndUrlIgnoreCaseAndCaptionIgnoreCase(memeEntity.getName(), 
-                           memeEntity.getUrl(),memeEntity.getCaption());
+        boolean isExists = memeRepository.existsByNameIgnoreCaseAndUrlIgnoreCaseAndCaptionIgnoreCase(postEntity.getName(), 
+        postEntity.getUrl(),postEntity.getCaption());
 
         MemeEntity meme = new MemeEntity();
         if (!isExists) {            
             meme.setId(SequenceGeneratorService.generateSequence(MemeEntity.SEQUENCE_NAME));
-            meme.setName(memeEntity.getName());
-            meme.setUrl(memeEntity.getUrl());
-            meme.setCaption(memeEntity.getCaption());
+            meme.setName(postEntity.getName());
+            meme.setUrl(postEntity.getUrl());
+            meme.setCaption(postEntity.getCaption());
             memeRepository.save(meme);
         } 
         else{
