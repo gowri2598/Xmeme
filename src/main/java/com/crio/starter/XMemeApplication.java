@@ -10,14 +10,26 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 
 @SpringBootApplication
+@EnableSwagger2
 @Log4j2
 public class XMemeApplication {
  
   public static void main(String[] args) {
     SpringApplication.run(XMemeApplication.class, args);
     log.info("Congrats! Your XMemeApplication server has started"); 
+  }
+
+  @Bean
+  public Docket productApi() {
+    return new Docket(DocumentationType.SWAGGER_2).select()
+    .apis(RequestHandlerSelectors.basePackage("com.crio.starter")).build();
   }
 
   @Bean // Want a new obj every time
